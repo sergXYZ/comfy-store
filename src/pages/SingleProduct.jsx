@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { customFetch, formatPrice } from '../utils'
+import { customFetch, formatPrice, generateAmountOptions } from '../utils'
 import { Link, useLoaderData } from 'react-router-dom'
 import { MdBorderColor } from 'react-icons/md'
 
@@ -71,15 +71,27 @@ const SingleProduct = () => {
           {/* AMOUNT */}
           <div className="fieldset w-full max-w-xs">
             <label htmlFor="amount" className="label ">
-              <h4 className="text-md font-medium tracking-wider capitalize">
+              <h4 className="text-lg font-medium tracking-wider capitalize mt-2">
                 amount
               </h4>
             </label>
-            <select id="amount" value={amount} onChange={handleAmount}>
-              <option value={1}>1</option>
-              <option value={2}>2</option>
-              <option value={3}>3</option>
+            <select
+              id="amount"
+              value={amount}
+              onChange={handleAmount}
+              className="select select-secondary select-bordered select-md"
+            >
+              {generateAmountOptions(5)}
             </select>
+          </div>
+          {/* Card button */}
+          <div className="mt-10 ">
+            <button
+              className="btn btn-secondary btn-md"
+              onClick={() => console.log('add to bag')}
+            >
+              Add to bag
+            </button>
           </div>
         </div>
       </div>
