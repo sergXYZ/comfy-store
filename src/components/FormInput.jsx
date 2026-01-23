@@ -1,6 +1,6 @@
 import React from 'react'
 
-const FormInput = ({ label, name, type, defaultValue }) => {
+const FormInput = ({ label, name, type, defaultValue, size }) => {
   return (
     <fieldset className="fieldset">
       <legend className="fieldset-legend text-neutral/65 capitalize text-sm font-normal">
@@ -8,7 +8,7 @@ const FormInput = ({ label, name, type, defaultValue }) => {
       </legend>
       <input
         type={type}
-        className="input"
+        className={`input ${size}`}
         placeholder={defaultValue}
         name={name}
       />
