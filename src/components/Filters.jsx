@@ -3,6 +3,8 @@ import FormInput from './FormInput'
 import SubmitBtn from './SubmitBtn'
 import { Form, useLoaderData } from 'react-router-dom'
 import FormSelect from './FormSelect'
+import FormPrice from './FormPrice'
+import FormCheckbox from './FormCheckbox'
 
 const Filters = () => {
   const { meta } = useLoaderData()
@@ -37,6 +39,16 @@ const Filters = () => {
         list={['a-z', 'z-a', 'high', 'low']}
         size={'select-sm'}
       ></FormSelect>
+      {/*Price */}
+      <FormPrice name={'price'} label={'select price'} size="range-sm" />
+
+      {/* SHipping */}
+      <FormCheckbox
+        name={'shipping'}
+        label={'free shipping'}
+        defaultValue={false}
+        size={'checkbox-sm'}
+      />
       <button
         type="submit"
         className="btn btn-primary btn-sm uppercase text-md"
