@@ -3,9 +3,12 @@ import React from 'react'
 const FormInput = ({ label, name, type, defaultValue, size }) => {
   return (
     <fieldset className="fieldset">
-      <legend className="fieldset-legend text-neutral/65 capitalize text-sm font-normal">
+      <label
+        htmlFor={name}
+        className="fieldset-legend text-neutral/65 capitalize text-sm font-normal"
+      >
         {label}
-      </legend>
+      </label>
       <input
         type={type}
         className={`input ${size}`}
