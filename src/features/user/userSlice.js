@@ -12,6 +12,7 @@ const getStorageTheme = () => {
 }
 const initialState = {
   user: { username: 'coding addict' },
+  //user: null,
   theme: getStorageTheme(),
 }
 
@@ -23,7 +24,9 @@ const userSlice = createSlice({
       console.log('login')
     },
     logoutUser: (state) => {
-      console.log('logout')
+      state.user = null
+      localStorage.removeItem('theme')
+      toast.success('Logged out successfully')
     },
     toggleTheme: (state) => {
       const { light, dark } = themes
