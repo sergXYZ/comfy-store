@@ -1,9 +1,10 @@
 import React from 'react'
 import { FormInput, SubmitBtn } from '../components'
-import { Form, Link, redirect } from 'react-router-dom'
+import { Form, Link, redirect, useNavigate } from 'react-router-dom'
 import { customFetch } from '../utils'
 import { loginUser } from '../features/user/userSlice'
 import { toast } from 'react-toastify'
+import { useDispatch } from 'react-redux'
 
 export const action =
   (store) =>
@@ -28,6 +29,22 @@ export const action =
   }
 
 const Login = () => {
+  const navigate = useNavigate()
+  const dispatch = useDispatch()
+  const handleGuestUser = async () => {
+    try {
+      const response = await customFetch.post('/auth/local', {
+        identifier: 'test@test.com',
+        password: 'secret',
+      })
+      toast.success('welcome guest user!')
+      dispatch(loginUser(response.data))
+      navigate('/')
+    } catch (error) {
+      toast.error('guest user error. please, try again later')
+    }
+  }
+
   return (
     <section className="h-screen grid place-items-center">
       <Form
@@ -37,7 +54,11 @@ const Login = () => {
         <h4 className="text-center text-3xl font-bold text-neutral/70">
           Login
         </h4>
-        <FormInput label="email" name="identifier" type="email"></FormInput>
+        <FormInput
+          label="email or username"
+          name="identifier"
+          type="email"
+        ></FormInput>
         <FormInput label="password" name="password" type="password"></FormInput>
         <div className="mt-4">
           <SubmitBtn text="login"></SubmitBtn>
@@ -46,6 +67,7 @@ const Login = () => {
           <button
             type="button"
             className="btn btn-secondary btn-block uppercase"
+            onClick={handleGuestUser}
           >
             guest user
           </button>
