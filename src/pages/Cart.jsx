@@ -5,13 +5,13 @@ import { useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
 
 const Cart = () => {
-  const user = null
   const numberItemsInCart = useSelector(
     (store) => store.cartState.numItemsInCart,
   )
   if (numberItemsInCart === 0) {
-    return <SectionTitle text={'your shopping cart is epmty'} />
+    return <SectionTitle text={'your shopping cart is empty'} />
   }
+  const user = useSelector((state) => state.userState.user) //.user.username)
 
   return (
     <div>
