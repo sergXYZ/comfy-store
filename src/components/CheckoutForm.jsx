@@ -25,7 +25,7 @@ export const action =
       const postResponse = await customFetch.post(
         '/orders',
         { data: info },
-        { headers: { Authorization: `Bearer ${user.tokens}` } },
+        { headers: { Authorization: `Bearer ${user.token}` } },
       )
       store.dispatch(clearCart())
       toast.success('order placed successfully!')
@@ -35,7 +35,7 @@ export const action =
         error?.response?.data?.error?.message ||
         'there was an error placing your order'
       toast.error(errorMessage)
-      if (error.response.data.error.status === 401) {
+      if (error.response.data.error.status === 401 || 403) {
         return redirect('/login')
       }
       return null
