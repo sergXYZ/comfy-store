@@ -5,6 +5,7 @@ const PaginationContainer = () => {
   const { meta } = useLoaderData()
   const location = useLocation()
   const { search, pathname } = location
+
   const navigate = useNavigate()
 
   const { pageCount, page } = meta.pagination
